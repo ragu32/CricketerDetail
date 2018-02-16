@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/player_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:gravity="center"
+        android:padding="20dp"
+        android:hint="Player name"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/jersey_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/player_name"
+        android:ems="10"
+        android:inputType="number"
+        android:gravity="center"
+        android:padding="20dp"
+        android:hint="jersey no"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jersey_number"
+        android:paddingTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:entries="@array/player_type"/>
+
+    <Button
+        android:id="@+id/add_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:text="Button"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"/>
+</RelativeLayout>
+

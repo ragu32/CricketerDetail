@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CricketerDetails</string>
+    <string name="action_settings">Settings</string>
+    <string name="Player_added">Player added successfully</string>
+
+    <array name="player_type">
+        <item name="choose">-- Choose player type --</item>
+        <item name="batsman">Batsman</item>
+        <item name="bowler">Bowler</item>
+        <item name="all_rounder">All rounder</item>
+    </array>
+</resources>
