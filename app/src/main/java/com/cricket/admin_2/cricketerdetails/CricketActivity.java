@@ -1,5 +1,6 @@
 package com.cricket.admin_2.cricketerdetails;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,20 +11,26 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.cricket.admin_2.cricketerdetails.adapter.PlayerAdapter;
-
+import com.cricket.admin_2.cricketerdetails.player.AddPlayer;
 public class CricketActivity extends AppCompatActivity {
     private PlayerAdapter playerAdapter;
+    private AddPlayer addPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cricket);
-
+        ProgressBar pb=(ProgressBar)findViewById(R.id.progressBar2);
+        pb.setVisibility(View.VISIBLE);
         ListView listView = findViewById(R.id.player_list);
         playerAdapter = new PlayerAdapter(getApplicationContext());
         listView.setAdapter(playerAdapter);
+        addPlayer = new AddPlayer();
+        addPlayer.getPlayerDetails(playerAdapter,pb);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_cricketer_detail);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +46,16 @@ public class CricketActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_cricket, menu);
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override

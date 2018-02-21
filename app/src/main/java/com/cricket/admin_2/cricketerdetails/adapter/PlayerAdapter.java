@@ -2,6 +2,7 @@ package com.cricket.admin_2.cricketerdetails.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import com.cricket.admin_2.cricketerdetails.AddPlayerActivity;
 import com.cricket.admin_2.cricketerdetails.player.AddPlayer;
 import com.cricket.admin_2.cricketerdetails.player.Player;
 import com.cricket.admin_2.cricketerdetails.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 /**
@@ -22,14 +27,13 @@ import java.util.ArrayList;
 public class PlayerAdapter extends ArrayAdapter<Player> {
     private ArrayList<Player> players = AddPlayer.players;
     private Context context;
-
+    ViewHolder viewHolder;
     public PlayerAdapter(Context context) {
         super(context, R.layout.player_add_in_listview);
         this.context = context;
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
         if(convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.player_add_in_listview, parent, false);
@@ -38,6 +42,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
             viewHolder.jerseyNumber = convertView.findViewById(R.id.jersey_number);
             viewHolder.playerType = convertView.findViewById(R.id.player_type);
             convertView.setTag(viewHolder);
+            Log.v("Checking", "in getView method");
         }
         else {
             viewHolder = (ViewHolder)convertView.getTag();

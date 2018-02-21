@@ -5,6 +5,9 @@ public class Player {
     private String playerName;
     private int jerseyNumber;
     private String playerType;
+    public Player() {
+
+    }
 
     public Player(String playerName, int jerseyNumber, String playerType) {
         this.playerName = playerName;
