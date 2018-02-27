@@ -1,7 +1,9 @@
 package com.cricket.admin_2.cricketerdetails;
 
 import android.app.Application;
+import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,9 +16,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.cricket.admin_2.cricketerdetails.adapter.PlayerAdapter;
 import com.cricket.admin_2.cricketerdetails.player.AddPlayer;
+import com.cricket.admin_2.cricketerdetails.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CricketActivity extends AppCompatActivity {
     private PlayerAdapter playerAdapter;
     private AddPlayer addPlayer;
@@ -29,6 +37,21 @@ public class CricketActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.player_list);
         playerAdapter = new PlayerAdapter(getApplicationContext());
         listView.setAdapter(playerAdapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Player selectedItem = AddPlayer.players.get(i);
+                Toast.makeText(getApplicationContext(),selectedItem.getPlayerName(),Toast.LENGTH_SHORT).show();
+                //PlayerAdapter associatedAdapter = (PlayerAdapter) (adapterView.getAdapter());
+                //ArrayList<Player> associatedList = associatedAdapter.getList();
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                PassObject passObj = new PassObject(view, selectedItem, AddPlayer.players);
+                Toast.makeText(getApplicationContext(), Integer.toString(view.getId()), Toast.LENGTH_SHORT).show();
+                view.startDragAndDrop(data, shadowBuilder, passObj, 0);
+                return true;
+            }
+        });
         addPlayer = new AddPlayer();
         addPlayer.getPlayerDetails(playerAdapter,pb);
 
@@ -72,4 +95,6 @@ public class CricketActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

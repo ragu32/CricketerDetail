@@ -1,16 +1,20 @@
 package com.cricket.admin_2.cricketerdetails.adapter;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cricket.admin_2.cricketerdetails.AddPlayerActivity;
+import com.cricket.admin_2.cricketerdetails.ItemOnDragListener;
+import com.cricket.admin_2.cricketerdetails.PassObject;
 import com.cricket.admin_2.cricketerdetails.player.AddPlayer;
 import com.cricket.admin_2.cricketerdetails.player.Player;
 import com.cricket.admin_2.cricketerdetails.R;
@@ -28,6 +32,10 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     private ArrayList<Player> players = AddPlayer.players;
     private Context context;
     ViewHolder viewHolder;
+    public PlayerAdapter(Context context, ArrayList<Player> players) {
+        super(context, R.layout.player_add_in_listview);
+        this.context = context;
+    }
     public PlayerAdapter(Context context) {
         super(context, R.layout.player_add_in_listview);
         this.context = context;
@@ -59,11 +67,17 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         else {
             viewHolder.playerType.setImageDrawable(context.getDrawable(R.drawable.all_rounder));
         }
+
+        convertView.setOnDragListener(new ItemOnDragListener(player, context));
         return convertView;
     }
 
     public int getCount() {
         return players.size();
+    }
+
+    public ArrayList<Player> getList() {
+        return players;
     }
 
     static class ViewHolder {
