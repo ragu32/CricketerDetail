@@ -20,7 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddPlayerActivity" />
-        <activity android:name=".PlayerAddInListviewActivity"></activity>
+        <activity android:name=".PlayerAddInListviewActivity" />
+        <activity android:name=".RecyclerViewActivityActivity" />
+        <activity android:name=".CardViewActivityActivity"></activity>
     </application>
 
 </manifest>
