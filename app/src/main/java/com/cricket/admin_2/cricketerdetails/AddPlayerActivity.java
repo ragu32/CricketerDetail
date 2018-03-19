@@ -18,7 +18,8 @@ String playerType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_player);
+        setContentView(R.layout.
+                activity_add_player);
 
         playerName = findViewById(R.id.player_name);
         jerseyNumber = findViewById(R.id.jersey_number);

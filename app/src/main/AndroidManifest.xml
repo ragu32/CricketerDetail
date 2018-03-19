@@ -22,7 +22,7 @@
         <activity android:name=".AddPlayerActivity" />
         <activity android:name=".PlayerAddInListviewActivity" />
         <activity android:name=".RecyclerViewActivityActivity" />
-        <activity android:name=".CardViewActivityActivity"></activity>
+        <activity android:name=".CardViewActivity"></activity>
     </application>
 
 </manifest>

@@ -43,6 +43,7 @@ public class AddPlayer {
                 for(DataSnapshot refDataSnap : dataSnapshot.getChildren()) {
                     Player player = refDataSnap.getValue(Player.class);
                     players.add(player);
+
                 }
                 adapterref.notifyDataSetChanged();
                 progressBar.setVisibility(View.INVISIBLE);

@@ -2,6 +2,7 @@ package com.cricket.admin_2.cricketerdetails.adapter;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cricket.admin_2.cricketerdetails.AddPlayerActivity;
 import com.cricket.admin_2.cricketerdetails.ItemOnDragListener;
 import com.cricket.admin_2.cricketerdetails.PassObject;
+import com.cricket.admin_2.cricketerdetails.PlayerAddInListviewActivity;
+import com.cricket.admin_2.cricketerdetails.RecyclerViewActivityActivity;
 import com.cricket.admin_2.cricketerdetails.player.AddPlayer;
 import com.cricket.admin_2.cricketerdetails.player.Player;
 import com.cricket.admin_2.cricketerdetails.R;
@@ -23,6 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by admin_2 on 12/02/2018.
@@ -49,6 +55,8 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
             viewHolder.playerName = convertView.findViewById(R.id.player_name);
             viewHolder.jerseyNumber = convertView.findViewById(R.id.jersey_number);
             viewHolder.playerType = convertView.findViewById(R.id.player_type);
+            viewHolder.addImageButton = convertView.findViewById(R.id.open_card_view);
+
             convertView.setTag(viewHolder);
             Log.v("Checking", "in getView method");
         }
@@ -58,6 +66,12 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         final Player player = players.get(position);
         viewHolder.playerName.setText(player.getPlayerName());
         viewHolder.jerseyNumber.setText(player.getJerseyNumber()+"");
+        viewHolder.addImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.getContext().startActivity(new Intent(context, RecyclerViewActivityActivity.class));
+            }
+        });
         if(player.getPlayerType().equals("Bowler")) {
             viewHolder.playerType.setImageDrawable(context.getDrawable(R.drawable.bowler));
         }
@@ -83,5 +97,6 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     static class ViewHolder {
         TextView playerName, jerseyNumber;
         ImageView playerType;
+        Button addImageButton;
     }
 }

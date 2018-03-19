@@ -48,7 +48,7 @@ public class CricketActivity extends AppCompatActivity {
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 PassObject passObj = new PassObject(view, selectedItem, AddPlayer.players);
                 Toast.makeText(getApplicationContext(), Integer.toString(view.getId()), Toast.LENGTH_SHORT).show();
-                view.startDragAndDrop(data, shadowBuilder, passObj, 0);
+                //view.startDragAndDrop(data, shadowBuilder, passObj, 0);
                 return true;
             }
         });
